@@ -23,7 +23,3 @@
 /nbdist/
 /.nb-gradle/
 /build/
-
-### Git ###
-*/.git/
-*/.gitignore
