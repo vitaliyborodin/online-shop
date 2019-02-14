@@ -1,0 +1,11 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.vborodin.onlineshop</groupId>
+  <artifactId>online-shop</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+ 
+  <modules>
+    <module>user-service</module>
+  </modules>
+</project>
