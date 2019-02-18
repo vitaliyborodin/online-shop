@@ -26,10 +26,10 @@
             <column name="ADDRESS" type="varchar(255)">
                 <constraints nullable="true" unique="false"/>
             </column>
-            <column name="ROLE" type="varchar(10)">
+            <column name="ROLE" type="varchar(15)">
                 <constraints nullable="false" unique="false"/>
             </column>
-            <column name="ACTIVE" type="boolean">
+            <column name="STATUS" type="varchar(15)">
                 <constraints nullable="false" unique="false"/>
             </column>
             <column name="PASSWORD" type="varchar(255)">

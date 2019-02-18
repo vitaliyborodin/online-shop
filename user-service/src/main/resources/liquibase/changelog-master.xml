@@ -5,6 +5,6 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
 
-    <include file="changelog/01-create-users-schema.xml" relativeToChangelogFile="true"/>
-    <include file="changelog/02-insert-data-users.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/initial-schema.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/initial-data.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

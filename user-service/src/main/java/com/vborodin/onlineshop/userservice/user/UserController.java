@@ -1,19 +1,17 @@
 package com.vborodin.onlineshop.userservice.user;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.vborodin.onlineshop.userservice.exception.ApiException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping(value = "/users",
         consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
         produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class UserController {
-    private UserService userService;
+    private final UserService userService;
 
-    @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
     }
@@ -30,8 +28,7 @@ public class UserController {
 
     @GetMapping("{id}")
     public User findById(@PathVariable("id") Long id) {
-        return userService.findById(id).orElseThrow(() -> new ResponseStatusException(
-                HttpStatus.NOT_FOUND, "Entity not found"
-        ));
+        return userService.findById(id)
+                .orElseThrow(() -> new ApiException("Entity not found", HttpStatus.NOT_FOUND));
     }
 }

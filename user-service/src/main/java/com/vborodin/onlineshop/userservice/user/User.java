@@ -1,5 +1,6 @@
 package com.vborodin.onlineshop.userservice.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -19,7 +20,9 @@ public class User {
     @Column(name = "ROLE")
     @Enumerated(EnumType.STRING)
     private UserRole role;
-    private boolean active;
-    @Transient
+    @Column(name = "STATUS")
+    @Enumerated(EnumType.STRING)
+    private UserStatus status;
+    @JsonIgnore
     private String password;
 }

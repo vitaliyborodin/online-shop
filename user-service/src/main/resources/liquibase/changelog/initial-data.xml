@@ -15,8 +15,8 @@
             <column name="LAST_NAME" value="Adminov"/>
             <column name="ADDRESS" value=""/>
             <column name="ROLE" value="ADMIN"/>
-            <column name="ACTIVE" value="1"/>
-            <column name="PASSWORD" value="admin"/>
+            <column name="STATUS" value="ACTIVE"/>
+            <column name="PASSWORD" value="$2a$10$fXqdbGC/lkfZG2Nz5bPQ0OwL8arUdOIVW206Lv9xufBe.dT9SeGsW"/>
         </insert>
     </changeSet>
 </databaseChangeLog>
