@@ -16,7 +16,29 @@
             <column name="ADDRESS" value=""/>
             <column name="ROLE" value="ADMIN"/>
             <column name="STATUS" value="ACTIVE"/>
-            <column name="PASSWORD" value="$2a$10$fXqdbGC/lkfZG2Nz5bPQ0OwL8arUdOIVW206Lv9xufBe.dT9SeGsW"/>
+            <column name="PASSWORD" value="{noop}admin"/>
+        </insert>
+        <insert tableName="users">
+            <column name="ID" valueNumeric="2"/>
+            <column name="LOGIN" value="user"/>
+            <column name="EMAIL" value="user@test.test"/>
+            <column name="FIRST_NAME" value="User"/>
+            <column name="LAST_NAME" value="Userov"/>
+            <column name="ADDRESS" value=""/>
+            <column name="ROLE" value="USER"/>
+            <column name="STATUS" value="ACTIVE"/>
+            <column name="PASSWORD" value="{noop}user"/>
+        </insert>
+        <insert tableName="users">
+            <column name="ID" valueNumeric="3"/>
+            <column name="LOGIN" value="admin2"/>
+            <column name="EMAIL" value="admin2@test.test"/>
+            <column name="FIRST_NAME" value="Admin2"/>
+            <column name="LAST_NAME" value="Adminov"/>
+            <column name="ADDRESS" value=""/>
+            <column name="ROLE" value="ADMIN"/>
+            <column name="STATUS" value="INACTIVE"/>
+            <column name="PASSWORD" value="{noop}admin2"/>
         </insert>
     </changeSet>
 </databaseChangeLog>

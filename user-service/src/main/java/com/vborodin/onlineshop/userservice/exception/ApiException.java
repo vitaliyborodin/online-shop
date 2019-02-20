@@ -13,7 +13,6 @@ public class ApiException extends RuntimeException {
 	}
 
 	public ApiException(String message) {
-		super(message);
-		this.status = HttpStatus.INTERNAL_SERVER_ERROR;
+		this(message, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 }

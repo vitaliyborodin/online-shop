@@ -1,30 +1,33 @@
 package com.vborodin.onlineshop.userservice.security;
 
 import com.vborodin.onlineshop.userservice.user.User;
-import com.vborodin.onlineshop.userservice.user.UserRepository;
+import com.vborodin.onlineshop.userservice.user.UserService;
+import com.vborodin.onlineshop.userservice.user.UserStatus;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-import java.util.Collections;
-import java.util.List;
 import java.util.Optional;
 
 @Component
 public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     @Override
     public UserDetails loadUserByUsername(String login) {
-        Optional<User> user = userRepository.findByLogin(login);
+        Optional<User> user = userService.findByLogin(login);
         if (user.isEmpty()) {
             throw new UsernameNotFoundException("User not found");
         }
-        List<SimpleGrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority(user.get().getRole().name()));
-        return new org.springframework.security.core.userdetails.User(user.get().getLogin(), user.get().getPassword(), authorities);
+
+        return org.springframework.security.core.userdetails.User.builder()
+                .username(user.get().getLogin())
+                .password(user.get().getPassword())
+                .authorities(user.get().getRole().name())
+                .accountLocked(!UserStatus.ACTIVE.equals(user.get().getStatus()))
+                .build();
     }
 }

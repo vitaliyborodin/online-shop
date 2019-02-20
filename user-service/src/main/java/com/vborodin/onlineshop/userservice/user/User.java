@@ -1,6 +1,6 @@
 package com.vborodin.onlineshop.userservice.user;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -23,6 +23,6 @@ public class User {
     @Column(name = "STATUS")
     @Enumerated(EnumType.STRING)
     private UserStatus status;
-    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 }

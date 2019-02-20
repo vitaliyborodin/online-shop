@@ -2,10 +2,6 @@ server:
   port: 8085
 
 spring:
-  queries:
-    users-query: select login, password, active from users where login=?
-    roles-query: select login, role from users where u.login=?
-
   h2:
     console:
       enabled: true
