@@ -40,5 +40,16 @@
             <column name="STATUS" value="INACTIVE"/>
             <column name="PASSWORD" value="{noop}admin2"/>
         </insert>
+        <insert tableName="users">
+            <column name="ID" valueNumeric="4"/>
+            <column name="LOGIN" value="manager"/>
+            <column name="EMAIL" value="manager@test.test"/>
+            <column name="FIRST_NAME" value="Manager"/>
+            <column name="LAST_NAME" value="Managerov"/>
+            <column name="ADDRESS" value=""/>
+            <column name="ROLE" value="MANAGER"/>
+            <column name="STATUS" value="ACTIVE"/>
+            <column name="PASSWORD" value="{noop}manager"/>
+        </insert>
     </changeSet>
 </databaseChangeLog>

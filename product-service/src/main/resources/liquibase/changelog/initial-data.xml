@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+<changeSet id="02" author="vborodin">
+        <comment>Inserting Products and Catalogs</comment>
+        <insert tableName="CATALOGS">
+            <column name="ID" valueNumeric="1"/>
+            <column name="NAME" value="Smartphones"/>
+            <column name="DESCRIPTION" value=""/>
+            <column name="CATALOG_ID" valueNumeric="null"/>
+        </insert>
+        <insert tableName="CATALOGS">
+            <column name="ID" valueNumeric="2"/>
+            <column name="NAME" value="Nokia"/>
+            <column name="DESCRIPTION" value=""/>
+            <column name="CATALOG_ID" valueNumeric="1"/>
+        </insert>
+        <insert tableName="CATALOGS">
+            <column name="ID" valueNumeric="3"/>
+            <column name="NAME" value="Apple"/>
+            <column name="DESCRIPTION" value=""/>
+            <column name="CATALOG_ID" valueNumeric="1"/>
+        </insert>
+
+        <insert tableName="PRODUCTS">
+            <column name="ID" valueNumeric="1"/>
+            <column name="NAME" value="Nokia 3310"/>
+            <column name="DESCRIPTION" value=""/>
+            <column name="PRICE" valueNumeric="10.00"/>
+            <column name="QUANTITY" valueNumeric="100"/>
+            <column name="CATALOG_ID" valueNumeric="2"/>
+        </insert>
+        <insert tableName="PRODUCTS">
+            <column name="ID" valueNumeric="2"/>
+            <column name="NAME" value="iPhone X"/>
+            <column name="DESCRIPTION" value=""/>
+            <column name="PRICE" valueNumeric="1000.00"/>
+            <column name="QUANTITY" valueNumeric="100"/>
+            <column name="CATALOG_ID" valueNumeric="3"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

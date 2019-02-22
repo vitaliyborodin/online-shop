@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="01" author="vborodin">
+        <createTable tableName="CATALOGS"
+                     remarks="A table to contain all catalogs">
+            <column name="ID" type="bigint">
+                <constraints nullable="false" unique="true" primaryKey="true"/>
+            </column>
+            <column name="NAME" type="varchar(191)">
+                <constraints nullable="false" unique="false"/>
+            </column>
+            <column name="DESCRIPTION" type="varchar(255)">
+                <constraints nullable="true" unique="false"/>
+            </column>
+            <column name="CATALOG_ID" type="bigint" defaultValue="0">
+                <constraints nullable="true" unique="false" foreignKeyName="fk_catalog_catalog" references="CATALOGS(ID)"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="PRODUCTS"
+                     remarks="A table to contain all products">
+            <column name="ID" type="bigint">
+                <constraints nullable="false" unique="true" primaryKey="true"/>
+            </column>
+            <column name="NAME" type="varchar(191)">
+                <constraints nullable="false" unique="false"/>
+            </column>
+            <column name="DESCRIPTION" type="varchar(255)">
+                <constraints nullable="true" unique="false"/>
+            </column>
+            <column name="PRICE" type="number(15,2)" defaultValue="0">
+                <constraints nullable="false" unique="false"/>
+            </column>
+            <column name="QUANTITY" type="number(10)" defaultValue="0">
+                <constraints nullable="false" unique="false"/>
+            </column>
+            <column name="CATALOG_ID" type="bigint">
+                <constraints nullable="true" unique="false" foreignKeyName="fk_product_catalog" references="CATALOGS(ID)"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

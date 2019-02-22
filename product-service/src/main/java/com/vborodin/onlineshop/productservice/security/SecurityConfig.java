@@ -1,6 +1,5 @@
-package com.vborodin.onlineshop.userservice.security;
+package com.vborodin.onlineshop.productservice.security;
 
-import com.vborodin.onlineshop.userservice.user.UserRole;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -8,7 +7,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
@@ -22,7 +21,7 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     PasswordEncoder passwordEncoder() {
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+        return NoOpPasswordEncoder.getInstance();
     }
 
     @Override
@@ -34,8 +33,7 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().httpBasic().and()
                 .authorizeRequests()
-                .antMatchers("/authorize").permitAll()
-                .antMatchers("/users/**").hasAuthority(UserRole.ADMIN.name())
+                .antMatchers("/products/**").hasAuthority("MANAGER")
                 .anyRequest().authenticated()
                 .and()
                 .logout();
