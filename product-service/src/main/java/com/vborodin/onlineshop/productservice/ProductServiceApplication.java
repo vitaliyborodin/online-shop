@@ -5,9 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@EnableTransactionManagement
-@SpringBootApplication
 @EnableJpaAuditing
+@SpringBootApplication
+@EnableTransactionManagement
 public class ProductServiceApplication {
 
 	public static void main(String[] args) {

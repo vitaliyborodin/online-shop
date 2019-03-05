@@ -17,9 +17,9 @@ import static javax.persistence.EnumType.STRING;
 
 @Entity
 @Data
+@NoArgsConstructor
 @Table(name = "PRODUCT_HISTORY")
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 public class ProductHistory {
     @Id
@@ -37,10 +37,10 @@ public class ProductHistory {
     @JoinColumn(name = "PRODUCT_ID")
     Product product;
     @Enumerated(STRING)
-    private ActionType action;
+    ActionType action;
     @Column
     @CreatedDate
-    private LocalDateTime createdDate;
+    LocalDateTime createdDate;
 
     public ProductHistory(Product product, ActionType action) {
         this.name = product.getName();

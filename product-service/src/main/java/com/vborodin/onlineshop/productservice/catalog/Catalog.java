@@ -19,7 +19,6 @@ public class Catalog {
     Long id;
     String name;
     String description;
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "CATALOG_ID")
     Catalog parent;

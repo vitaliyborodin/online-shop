@@ -17,7 +17,6 @@ import java.util.List;
 
 @Component
 public class UserDetailsServiceImpl implements UserDetailsService {
-
     private static final String AUTHORIZATION = "Authorization";
 
     @Autowired

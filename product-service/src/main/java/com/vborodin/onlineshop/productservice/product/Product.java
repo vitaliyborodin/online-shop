@@ -14,10 +14,10 @@ import java.util.List;
 
 @Data
 @Entity
-@EntityListeners(ProductListener.class)
-@Table(name = "PRODUCTS")
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
+@Table(name = "PRODUCTS")
+@EntityListeners(ProductListener.class)
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
