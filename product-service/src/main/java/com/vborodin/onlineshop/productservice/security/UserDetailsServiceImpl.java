@@ -1,6 +1,7 @@
 package com.vborodin.onlineshop.productservice.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -17,16 +18,21 @@ import java.util.List;
 @Component
 public class UserDetailsServiceImpl implements UserDetailsService {
 
+    private static final String AUTHORIZATION = "Authorization";
+
     @Autowired
     private HttpServletRequest request;
 
+    @Value("${user-service-url:http://localhost:8085}")
+    private String userServiceUrl;
+
     @Override
     public UserDetails loadUserByUsername(String login) {
-        String role = WebClient.create("http://localhost:8085")
+        String role = WebClient.create(userServiceUrl)
                 .get()
                 .uri("/authorize")
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .header("Authorization", request.getHeader("Authorization"))
+                .header(AUTHORIZATION, request.getHeader(AUTHORIZATION))
                 .retrieve().bodyToMono(new ParameterizedTypeReference<List<String>>() {})
         .block().get(0);
 
@@ -38,7 +44,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
     private String extractPassword(HttpServletRequest request) {
-        final String authorization = request.getHeader("Authorization");
+        final String authorization = request.getHeader(AUTHORIZATION);
         String password = "";
         if (authorization != null && authorization.toLowerCase().startsWith("basic")) {
             // Authorization: Basic base64credentials

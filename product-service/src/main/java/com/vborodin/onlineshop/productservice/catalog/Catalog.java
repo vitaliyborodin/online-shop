@@ -1,7 +1,6 @@
 package com.vborodin.onlineshop.productservice.catalog;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.vborodin.onlineshop.productservice.product.Product;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -20,14 +19,14 @@ public class Catalog {
     Long id;
     String name;
     String description;
-    @JsonManagedReference("catalog")
-    @ManyToOne
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "CATALOG_ID")
     Catalog parent;
     @JsonBackReference("catalog")
-    @OneToMany(mappedBy = "id")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
     List<Catalog> children;
     @JsonBackReference("product")
-    @OneToMany(mappedBy = "id")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "catalog")
     List<Product> products;
 }

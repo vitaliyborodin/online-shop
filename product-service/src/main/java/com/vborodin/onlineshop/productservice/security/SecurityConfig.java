@@ -1,5 +1,6 @@
 package com.vborodin.onlineshop.productservice.security;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -12,6 +13,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
 class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Value("${file.upload-dir:upload}")
+    private String fileUploadDir;
 
     @Override
     @Bean
@@ -34,6 +38,7 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable().httpBasic().and()
                 .authorizeRequests()
                 .antMatchers("/products/**").hasAuthority("MANAGER")
+                .antMatchers("/history/**").hasAuthority("MANAGER")
                 .anyRequest().authenticated()
                 .and()
                 .logout();
@@ -43,6 +48,6 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) {
         web
                 .ignoring()
-                .antMatchers("/h2-console/**");
+                .antMatchers("/h2-console/**", "/" + fileUploadDir);
     }
 }

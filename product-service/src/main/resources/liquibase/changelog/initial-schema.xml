@@ -39,8 +39,45 @@
             <column name="QUANTITY" type="number(10)" defaultValue="0">
                 <constraints nullable="false" unique="false"/>
             </column>
+            <column name="IMAGE" type="varchar(255)">
+                <constraints nullable="true" unique="false"/>
+            </column>
             <column name="CATALOG_ID" type="bigint">
                 <constraints nullable="true" unique="false" foreignKeyName="fk_product_catalog" references="CATALOGS(ID)"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="PRODUCT_HISTORY"
+                     remarks="A table to contain all product history">
+            <column name="ID" type="bigint">
+                <constraints nullable="false" unique="true" primaryKey="true"/>
+            </column>
+            <column name="NAME" type="varchar(191)">
+                <constraints nullable="false" unique="false"/>
+            </column>
+            <column name="DESCRIPTION" type="varchar(255)">
+                <constraints nullable="true" unique="false"/>
+            </column>
+            <column name="PRICE" type="number(15,2)" defaultValue="0">
+                <constraints nullable="false" unique="false"/>
+            </column>
+            <column name="QUANTITY" type="number(10)" defaultValue="0">
+                <constraints nullable="false" unique="false"/>
+            </column>
+            <column name="IMAGE" type="varchar(255)">
+                <constraints nullable="true" unique="false"/>
+            </column>
+            <column name="CATALOG_ID" type="bigint">
+                <constraints nullable="true" unique="false" foreignKeyName="fk_producthistory_catalog" references="CATALOGS(ID)"/>
+            </column>
+            <column name="PRODUCT_ID" type="bigint">
+                <constraints nullable="true" unique="false" foreignKeyName="fk_producthistory_product" references="PRODUCTS(ID)"/>
+            </column>
+            <column name="ACTION" type="varchar(191)">
+                <constraints nullable="true" unique="false"/>
+            </column>
+            <column name="CREATED_DATE" type="timestamp">
+                <constraints nullable="true" unique="false"/>
             </column>
         </createTable>
     </changeSet>
