@@ -49,10 +49,10 @@ public class ProductController {
         Product product = productService.findById(id)
                 .orElseThrow(() -> new ApiException("Entity not found", HttpStatus.NOT_FOUND));
 
-        String fileName = fileStorageService.storeFile(file);
+        String fileName = fileStorageService.storeFile(file, id.toString());
         String fileUri = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(fileStorageService.getFileUploadDir())
-                .path("/")
+                .path("/".concat(id.toString()).concat("/"))
                 .path(fileName)
                 .toUriString();
 

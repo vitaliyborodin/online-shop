@@ -30,13 +30,22 @@ public class FileStorageService {
         }
     }
 
-    public String storeFile(MultipartFile file) {
+    public String storeFile(MultipartFile file, String subFolder) {
         String fileName = DigestUtils.md5DigestAsHex(StringUtils.cleanPath(file.getName()).getBytes())
                 .concat(".")
                 .concat(FilenameUtils.getExtension(file.getOriginalFilename()));
 
         try {
-            Path targetLocation = this.fileStorageLocation.resolve(fileName);
+            Path targetLocation;
+            if (subFolder == null) {
+                targetLocation = this.fileStorageLocation.resolve(fileName);
+            } else {
+                targetLocation = Paths.get(this.fileStorageLocation.toString(), subFolder, fileName);
+            }
+
+            if (!Files.exists(targetLocation.getParent()))
+                Files.createDirectories(targetLocation.getParent());
+
             Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
 
             return fileName;
