@@ -8,7 +8,7 @@
 <changeSet id="02" author="vborodin">
         <comment>Inserting Users</comment>
         <insert tableName="users">
-            <column name="ID" valueNumeric="1"/>
+            <column name="ID" valueNumeric="1000000"/>
             <column name="LOGIN" value="admin"/>
             <column name="EMAIL" value="admin@test.test"/>
             <column name="FIRST_NAME" value="Admin"/>
@@ -19,7 +19,7 @@
             <column name="PASSWORD" value="{noop}admin"/>
         </insert>
         <insert tableName="users">
-            <column name="ID" valueNumeric="2"/>
+            <column name="ID" valueNumeric="2000000"/>
             <column name="LOGIN" value="user"/>
             <column name="EMAIL" value="user@test.test"/>
             <column name="FIRST_NAME" value="User"/>
@@ -30,7 +30,7 @@
             <column name="PASSWORD" value="{noop}user"/>
         </insert>
         <insert tableName="users">
-            <column name="ID" valueNumeric="3"/>
+            <column name="ID" valueNumeric="3000000"/>
             <column name="LOGIN" value="admin2"/>
             <column name="EMAIL" value="admin2@test.test"/>
             <column name="FIRST_NAME" value="Admin2"/>
@@ -41,7 +41,7 @@
             <column name="PASSWORD" value="{noop}admin2"/>
         </insert>
         <insert tableName="users">
-            <column name="ID" valueNumeric="4"/>
+            <column name="ID" valueNumeric="4000000"/>
             <column name="LOGIN" value="manager"/>
             <column name="EMAIL" value="manager@test.test"/>
             <column name="FIRST_NAME" value="Manager"/>

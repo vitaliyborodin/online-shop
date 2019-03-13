@@ -5,12 +5,16 @@ spring:
   h2:
     console:
       enabled: true
+
   datasource:
-    url: jdbc:h2:~/userservice
+    url: jdbc:h2:~/userservice;DB_CLOSE_ON_EXIT=FALSE;CACHE_SIZE=0;
+
   jpa:
     hibernate:
       ddl-auto: update
+
   liquibase:
+    drop-first: true
     change-log: classpath:/liquibase/changelog-master.xml
 
 hibernate:

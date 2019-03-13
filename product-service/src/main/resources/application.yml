@@ -14,6 +14,7 @@ spring:
       ddl-auto: update
 
   liquibase:
+    drop-first: true
     change-log: classpath:/liquibase/changelog-master.xml
 
   servlet:
@@ -23,6 +24,11 @@ spring:
   jackson:
     serialization:
       FAIL_ON_EMPTY_BEANS: false
+
+  resources:
+    cache:
+      cachecontrol:
+        max-age: 60
 
 hibernate:
   dialect: org.hibernate.dialect.H2Dialect

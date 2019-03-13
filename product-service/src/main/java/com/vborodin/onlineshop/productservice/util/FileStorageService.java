@@ -1,8 +1,10 @@
 package com.vborodin.onlineshop.productservice.util;
 
 import com.vborodin.onlineshop.productservice.exception.ApiException;
+import liquibase.util.file.FilenameUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.util.DigestUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -29,13 +31,11 @@ public class FileStorageService {
     }
 
     public String storeFile(MultipartFile file) {
-        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        String fileName = DigestUtils.md5DigestAsHex(StringUtils.cleanPath(file.getName()).getBytes())
+                .concat(".")
+                .concat(FilenameUtils.getExtension(file.getOriginalFilename()));
 
         try {
-            if (fileName.contains("..")) {
-                throw new ApiException("Filename contains invalid path sequence " + fileName);
-            }
-
             Path targetLocation = this.fileStorageLocation.resolve(fileName);
             Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
 
